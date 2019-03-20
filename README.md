@@ -2,6 +2,8 @@
 
 游戏客户端,服务器的策划表格数据导出
 
+![tabtoylogo](doc/logo.png)
+
 # 优点
 
 * 编写电子表格, 导出. 只需2步, 即可导出数据!
@@ -31,6 +33,10 @@
 * 充分利用CPU多核进行导出, 是已知的现有导出器中速度最快的
 
 # 商用项目
+
+* Tales of the Neon Sea(迷雾侦探)
+    https://store.steampowered.com/app/828740/Tales_of_the_Neon_Sea/
+    平台: PC(Steam), PS4, Switch
 
 * Mad Magic
 	https://itunes.apple.com/app/id1146098397
@@ -112,7 +118,7 @@ tabtoy --mode=v2 --json_out=config.json --combinename=Config Table.xlsx
 
 ### Golang读取例子
 
-	[例子](https://github.com/davyxu/tabtoy/tree/master/v2/example/golang)
+[例子](https://github.com/davyxu/tabtoy/tree/master/v2/example/golang)
 	
 ```golang
 	config := table.NewConfigTable()
@@ -133,42 +139,39 @@ tabtoy --mode=v2 --json_out=config.json --combinename=Config Table.xlsx
 	[例子](https://github.com/davyxu/tabtoy/tree/master/v2/example/csharp)
 
 ```csharp
-    using (var stream = new FileStream("../../../../Config.bin", FileMode.Open))
-    {
-        stream.Position = 0;
+   using (var stream = new FileStream("../../Config.bin", FileMode.Open))
+   {
+       stream.Position = 0;
 
-        var reader = new tabtoy.DataReader(stream);
-        
-        if ( !reader.ReadHeader( ) )
-        {
-            Console.WriteLine("combine file crack!");
-            return;
-        }
+       var reader = new tabtoy.DataReader(stream);
 
-        var config = new gamedef.Config();
-        table.Config.Deserialize(config, reader);                
+       var config = new table.Config();
 
-        // 直接通过下标获取或遍历
-        var directFetch = config.Sample[2];
+       var result = reader.ReadHeader(config.GetBuildID());
+       if ( result != FileState.OK)
+       {
+           Console.WriteLine("combine file crack!");
+           return;
+       }
 
-        // 根据索引取
-        var indexFetch = config.GetSampleByID(100);
 
-        // 取不存在的元素时, 返回给定的默认值, 避免空
-        var indexFetchByDefault = config.GetSampleByID(0, new gamedef.SampleDefine() );
+       table.Config.Deserialize(config, reader);
 
-        // 添加日志输出或自定义输出
-        config.TableLogger.AddTarget( new tabtoy.DebuggerTarget() );
+       // 直接通过下标获取或遍历
+       var directFetch = config.Sample[2];
 
-        // 取空时, 当默认值不为空时, 输出日志
-        var nullFetchOutLog = config.GetSampleByID( 0 );
+       // 添加日志输出或自定义输出
+       config.TableLogger.AddTarget(new tabtoy.DebuggerTarget());
 
-    }
+       // 取空时, 当默认值不为空时, 输出日志
+       var nullFetchOutLog = config.GetSampleByID(0);
+
+   }
 ```
 
 ### lua读取例子
 
-	[例子](https://github.com/davyxu/tabtoy/tree/master/v2/example/lua)
+[例子](https://github.com/davyxu/tabtoy/tree/master/v2/example/lua)
 
 ```lua
 -- 添加搜索路径
@@ -240,11 +243,28 @@ tabtoy --mode=v2 --json_out=CombineConfig.json --combinename=Config Item.xlsx+It
 
 [例子](https://github.com/davyxu/tabtoy/tree/master/v2/example/verticalconfig)
 
+
+# FAQ
+
+## 能够将某些列隐藏不导出?
+
+在列名字前加#即可, 例如: ID 一列不导出, 将第一行的ID列改为#ID即可
+
+同样的, Sheet表单上也支持#,带#开头的表单不会被导出
+
+P.S. 不要将@Types表单加#
+
+## 不同的表能生成指定不同语言的源码么?
+比如: A表生成A类, B表生成B类分别使用.
+不支持, tabtoy拥有统一的类型系统和数据分析设计,虽然在一个工程里可以手动导出2次形成2个类使用,但会遇到很多麻烦, 比如:类型冲突.
+所以, tabtoy提倡在一个工程里一次将表导出, 表只有1个入口. 客户端和服务器可以分别生成不同的入口.
+
+
 # 备注
 
 感觉不错请star, 谢谢!
 
-博客: [http://www.cppblog.com/sunicdavy](http://www.cppblog.com/sunicdavy)
+开源讨论群: 527430600, 进群验证:tabtoy
 
 知乎: [http://www.zhihu.com/people/sunicdavy](http://www.zhihu.com/people/sunicdavy)
 

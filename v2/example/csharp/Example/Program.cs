@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using tabtoy;
 
 namespace csharptest
 {
@@ -7,32 +8,34 @@ namespace csharptest
     {
 
         static void Main(string[] args)
-        {
-            var dir = Directory.GetCurrentDirectory();
+        {            
             using (var stream = new FileStream("../../Config.bin", FileMode.Open))
             {
                 stream.Position = 0;
 
                 var reader = new tabtoy.DataReader(stream);
-                
-                if ( !reader.ReadHeader(  ) )
+
+                var config = new table.Config();
+
+                var result = reader.ReadHeader(config.GetBuildID());
+                if ( result != FileState.OK)
                 {
                     Console.WriteLine("combine file crack!");
                     return;
                 }
 
-                var config = new table.Config();
-                table.Config.Deserialize(config, reader);                
+                
+                table.Config.Deserialize(config, reader);
 
-                // Ö±½ÓÍ¨¹ıÏÂ±ê»ñÈ¡»ò±éÀú
+                // ç›´æ¥é€šè¿‡ä¸‹æ ‡è·å–æˆ–éå†
                 var directFetch = config.Sample[2];
 
-                // Ìí¼ÓÈÕÖ¾Êä³ö»ò×Ô¶¨ÒåÊä³ö
-                config.TableLogger.AddTarget( new tabtoy.DebuggerTarget() );
+                // æ·»åŠ æ—¥å¿—è¾“å‡ºæˆ–è‡ªå®šä¹‰è¾“å‡º
+                config.TableLogger.AddTarget(new tabtoy.DebuggerTarget());
 
-                // È¡¿ÕÊ±, µ±Ä¬ÈÏÖµ²»Îª¿ÕÊ±, Êä³öÈÕÖ¾
-                var nullFetchOutLog = config.GetSampleByID( 0 );
-                
+                // å–ç©ºæ—¶, å½“é»˜è®¤å€¼ä¸ä¸ºç©ºæ—¶, è¾“å‡ºæ—¥å¿—
+                var nullFetchOutLog = config.GetSampleByID(0);
+
             }
            
         }

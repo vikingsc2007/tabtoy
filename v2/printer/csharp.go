@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"text/template"
 
+	"bytes"
+	"crypto/md5"
 	"github.com/davyxu/tabtoy/v2/i18n"
 	"github.com/davyxu/tabtoy/v2/model"
 	"strings"
@@ -58,6 +60,9 @@ namespace {{.Namespace}}{{$globalIndex:=.Indexes}}{{$verticalFields:=.VerticalFi
             return def;
         }
 		{{end}}
+		public string GetBuildID(){
+			return "{{$.BuildID}}";
+		}
 	{{range $verticalFields}}
 		public {{.StructName}} Get{{.Name}}( )
 		{
@@ -82,6 +87,7 @@ namespace {{.Namespace}}{{$globalIndex:=.Indexes}}{{$verticalFields:=.VerticalFi
 		}
 		public static void Deserialize( {{.Name}} ins, tabtoy.DataReader reader )
 		{
+			{{ if $.GenSerializeCode }}
  			int tag = -1;
             while ( -1 != (tag = reader.ReadTag()))
             {
@@ -93,7 +99,7 @@ namespace {{.Namespace}}{{$globalIndex:=.Indexes}}{{$verticalFields:=.VerticalFi
                 	}
                 	break; {{end}}
                 }
-             }
+             } {{end}}
 
 			{{range $a, $row :=.IndexedFields}}
 			// Build {{$row.FieldDescriptor.Name}} Index
@@ -357,6 +363,10 @@ type csharpFileModel struct {
 	Indexes     []indexField // 全局的索引
 
 	VerticalFields []csharpField
+
+	GenSerializeCode bool
+
+	BuildID string
 }
 
 type csharpPrinter struct {
@@ -372,8 +382,14 @@ func (self *csharpPrinter) Run(g *Globals) *Stream {
 
 	var m csharpFileModel
 
-	m.Namespace = g.FileDescriptor.Pragma.GetString("Package")
+	if g.PackageName != "" {
+		m.Namespace = g.PackageName
+	} else {
+		m.Namespace = g.FileDescriptor.Pragma.GetString("Package")
+	}
+
 	m.ToolVersion = g.Version
+	m.GenSerializeCode = g.GenCSSerailizeCode
 
 	// combinestruct的全局索引
 	for _, ti := range g.GlobalIndexes {
@@ -445,6 +461,16 @@ func (self *csharpPrinter) Run(g *Globals) *Stream {
 	}
 
 	bf := NewStream()
+
+	var md5Buffer bytes.Buffer
+	err = tpl.Execute(&md5Buffer, &m)
+	if err != nil {
+		log.Errorln(err)
+		return nil
+	}
+
+	m.BuildID = fmt.Sprintf("%x", md5.Sum(bf.Buffer().Bytes()))
+	g.BuildID = m.BuildID
 
 	err = tpl.Execute(bf.Buffer(), &m)
 	if err != nil {

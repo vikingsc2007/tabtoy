@@ -3,6 +3,7 @@ package printer
 import (
 	"github.com/davyxu/tabtoy/v2/i18n"
 	"github.com/davyxu/tabtoy/v2/model"
+	"strings"
 )
 
 type TableIndex struct {
@@ -11,12 +12,14 @@ type TableIndex struct {
 }
 
 type Globals struct {
-	Version         string
-	InputFileList   []interface{}
-	ParaMode        bool
-	ProtoVersion    int
-	LuaEnumIntValue bool
-	LuaTabHeader    string
+	Version            string
+	InputFileList      []interface{}
+	ParaMode           bool
+	ProtoVersion       int
+	LuaEnumIntValue    bool
+	LuaTabHeader       string
+	GenCSSerailizeCode bool
+	PackageName        string
 
 	Printers []*PrinterContext
 
@@ -30,6 +33,7 @@ type Globals struct {
 	GlobalIndexes []TableIndex      // 类型信息.全局索引
 	CombineStruct *model.Descriptor // 类型信息.Combine结构体
 
+	BuildID string
 }
 
 func (self *Globals) PreExport() bool {
@@ -98,7 +102,7 @@ func (self *Globals) AddTypes(localFD *model.FileDescriptor) bool {
 		self.Pragma.SetString("Package", localFD.Pragma.GetString("Package"))
 	} else if self.Pragma.GetString("Package") != localFD.Pragma.GetString("Package") {
 
-		log.Errorf("%s, '%s' '%s'", i18n.String(i18n.Globals_PackageNameDiff), localFD.Pragma.GetString("TableName"), self.Pragma.GetString("TableName"))
+		log.Errorf("%s, '%s' '%s'", i18n.String(i18n.Globals_PackageNameDiff), localFD.Pragma.GetString("TableName"), self.Pragma.GetString("TableType"))
 		return false
 	}
 
@@ -137,7 +141,9 @@ func (self *Globals) AddContent(tab *model.Table) bool {
 	rowFD.Complex = localFD.RowDescriptor()
 	rowFD.IsRepeated = true
 	rowFD.Order = int32(len(self.CombineStruct.Fields) + 1)
-	rowFD.Comment = localFD.Name
+
+	// 去掉注释中的回车,避免代码生成错误
+	rowFD.Comment = strings.Replace(localFD.Name, "\n", " ", -1)
 	self.CombineStruct.Add(rowFD)
 
 	if localFD.RowDescriptor() == nil {
