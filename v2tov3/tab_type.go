@@ -4,9 +4,9 @@ import (
 	"errors"
 	"fmt"
 	"github.com/davyxu/golexer"
-	"github.com/davyxu/tabtoy/v2tov3/model"
-	"github.com/davyxu/tabtoy/v3/helper"
-	v3model "github.com/davyxu/tabtoy/v3/model"
+	"github.com/vikingsc2007/tabtoy/v2tov3/model"
+	"github.com/vikingsc2007/tabtoy/v3/helper"
+	v3model "github.com/vikingsc2007/tabtoy/v3/model"
 	"github.com/tealeg/xlsx"
 	"strings"
 )

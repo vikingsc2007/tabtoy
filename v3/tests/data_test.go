@@ -1,7 +1,7 @@
 package tests
 
 import (
-	"github.com/davyxu/tabtoy/v3/helper"
+	"github.com/vikingsc2007/tabtoy/v3/helper"
 	"testing"
 )
 
@@ -31,7 +31,7 @@ func TestDisableDataRow(t *testing.T) {
 
 	emu.VerifyData(`
 {
-	"@Tool": "github.com/davyxu/tabtoy",
+	"@Tool": "github.com/vikingsc2007/tabtoy",
 	"@Version": "testver",	
 	"TestData":[ 
 		{ "Int": 100, "String": "\"hello1\"", "Bool": false, "Float": 0 },
@@ -85,7 +85,7 @@ func TestArrayList(t *testing.T) {
 
 	emu.VerifyData(`
 {
-			"@Tool": "github.com/davyxu/tabtoy",
+			"@Tool": "github.com/vikingsc2007/tabtoy",
 			"@Version": "testver",	
 			"TestData":[ 
 				{ "ID": 1, "SkillList": [100,200] },

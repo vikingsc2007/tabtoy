@@ -5,7 +5,7 @@ cd ../../../../../../..
 export GOPATH=`pwd`
 cd ${CURR}
 
-go build -v -o ${GOPATH}/bin/tabtoy github.com/davyxu/tabtoy
+go build -v -o ${GOPATH}/bin/tabtoy github.com/vikingsc2007/tabtoy
 
 ${GOPATH}/bin/tabtoy -mode=v3 \
 -index=Index.xlsx \

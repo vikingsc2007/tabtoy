@@ -2,9 +2,9 @@ package compiler
 
 import (
 	"github.com/ahmetb/go-linq"
-	"github.com/davyxu/tabtoy/v3/helper"
-	"github.com/davyxu/tabtoy/v3/model"
-	"github.com/davyxu/tabtoy/v3/report"
+	"github.com/vikingsc2007/tabtoy/v3/helper"
+	"github.com/vikingsc2007/tabtoy/v3/model"
+	"github.com/vikingsc2007/tabtoy/v3/report"
 )
 
 func LoadTypeTable(typeTab *model.TypeTable, indexGetter helper.FileGetter, fileName string) error {

@@ -2,9 +2,9 @@ package cssrc
 
 import (
 	"fmt"
-	"github.com/davyxu/tabtoy/util"
-	"github.com/davyxu/tabtoy/v3/gen/binpak"
-	"github.com/davyxu/tabtoy/v3/model"
+	"github.com/vikingsc2007/tabtoy/util"
+	"github.com/vikingsc2007/tabtoy/v3/gen/binpak"
+	"github.com/vikingsc2007/tabtoy/v3/model"
 	"text/template"
 )
 

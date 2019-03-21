@@ -1,7 +1,7 @@
 package tests
 
 import (
-	"github.com/davyxu/tabtoy/v3/helper"
+	"github.com/vikingsc2007/tabtoy/v3/helper"
 	"testing"
 )
 
@@ -100,7 +100,7 @@ func TestEnumValue(t *testing.T) {
 
 	emu.VerifyData(`
 {
-	"@Tool": "github.com/davyxu/tabtoy",
+	"@Tool": "github.com/vikingsc2007/tabtoy",
 	"@Version": "testver",	
 	"TestData":[ 
 		{ "Type": 0 },

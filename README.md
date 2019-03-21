@@ -92,18 +92,18 @@
 
 格式请参考:
 	
-	https://github.com/davyxu/tabtoy/blob/master/v2/example/Sample.xlsx
+	https://github.com/vikingsc2007/tabtoy/blob/master/v2/example/Sample.xlsx
 	
 	
 ### 准备tabtoy二进制
 
 * 已经编译好的二进制:
 	
-	[https://github.com/davyxu/tabtoy/releases](https://github.com/davyxu/tabtoy/releases)
+	[https://github.com/vikingsc2007/tabtoy/releases](https://github.com/vikingsc2007/tabtoy/releases)
 	
 * 手动编译获取最新版
 	
-	go get -u -v github.com/davyxu/tabtoy
+	go get -u -v github.com/vikingsc2007/tabtoy
 	
 ### 编写导出命令行
 
@@ -118,7 +118,7 @@ tabtoy --mode=v2 --json_out=config.json --combinename=Config Table.xlsx
 
 ### Golang读取例子
 
-[例子](https://github.com/davyxu/tabtoy/tree/master/v2/example/golang)
+[例子](https://github.com/vikingsc2007/tabtoy/tree/master/v2/example/golang)
 	
 ```golang
 	config := table.NewConfigTable()
@@ -136,7 +136,7 @@ tabtoy --mode=v2 --json_out=config.json --combinename=Config Table.xlsx
 
 ### C#读取例子
 	
-	[例子](https://github.com/davyxu/tabtoy/tree/master/v2/example/csharp)
+	[例子](https://github.com/vikingsc2007/tabtoy/tree/master/v2/example/csharp)
 
 ```csharp
    using (var stream = new FileStream("../../Config.bin", FileMode.Open))
@@ -171,7 +171,7 @@ tabtoy --mode=v2 --json_out=config.json --combinename=Config Table.xlsx
 
 ### lua读取例子
 
-[例子](https://github.com/davyxu/tabtoy/tree/master/v2/example/lua)
+[例子](https://github.com/vikingsc2007/tabtoy/tree/master/v2/example/lua)
 
 ```lua
 -- 添加搜索路径
@@ -192,7 +192,7 @@ print(t.SampleByName["黑猫警长"].ID)
 
 ## 所有例子
 	
-[例子](https://github.com/davyxu/tabtoy/blob/master/v2/example)
+[例子](https://github.com/vikingsc2007/tabtoy/blob/master/v2/example)
 
 * 注意: 例子中展现的是一般项目中多表的使用方法
 
@@ -201,9 +201,9 @@ print(t.SampleByName["黑猫警长"].ID)
 
 ## 详细文档
 
-[文档](https://github.com/davyxu/tabtoy/blob/master/doc/Manual_V2.md)
+[文档](https://github.com/vikingsc2007/tabtoy/blob/master/doc/Manual_V2.md)
 
-[错误描述](https://github.com/davyxu/tabtoy/blob/master/doc/error_v2.md)
+[错误描述](https://github.com/vikingsc2007/tabtoy/blob/master/doc/error_v2.md)
 
 
 ## 功能扩展
@@ -214,7 +214,7 @@ print(t.SampleByName["黑猫警长"].ID)
 
 tabtoy支持按功能分类后的表格, 导出时保持一致的表头及类型, 方便策划拆表进行多人协作
 
-[例子](https://github.com/davyxu/tabtoy/tree/master/v2/example/combine)
+[例子](https://github.com/vikingsc2007/tabtoy/tree/master/v2/example/combine)
 
 ```bat
 
@@ -241,7 +241,7 @@ tabtoy --mode=v2 --json_out=CombineConfig.json --combinename=Config Item.xlsx+It
 ### 支持纵向导出, 用于配置表
 ![电子表格](doc/vertical_v2.png)
 
-[例子](https://github.com/davyxu/tabtoy/tree/master/v2/example/verticalconfig)
+[例子](https://github.com/vikingsc2007/tabtoy/tree/master/v2/example/verticalconfig)
 
 
 # FAQ
@@ -268,4 +268,4 @@ P.S. 不要将@Types表单加#
 
 知乎: [http://www.zhihu.com/people/sunicdavy](http://www.zhihu.com/people/sunicdavy)
 
-提交bug及特性: [https://github.com/davyxu/tabtoy/issues](https://github.com/davyxu/tabtoy/issues)
+提交bug及特性: [https://github.com/vikingsc2007/tabtoy/issues](https://github.com/vikingsc2007/tabtoy/issues)

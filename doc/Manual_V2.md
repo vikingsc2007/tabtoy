@@ -6,18 +6,18 @@
 
 格式请参考:
 	
-	[Sample.xlsx]: (https://github.com/davyxu/tabtoy/blob/master/exportorv2/exsample/Sample.xlsx)
+	[Sample.xlsx]: (https://github.com/vikingsc2007/tabtoy/blob/master/exportorv2/exsample/Sample.xlsx)
 	
 	
 ## 准备tabtoy二进制
 
 * 已经编译好的二进制:
 	
-	[Tabtoy Release]: (https://github.com/davyxu/tabtoy/releases)
+	[Tabtoy Release]: (https://github.com/vikingsc2007/tabtoy/releases)
 	
 * 手动编译
 	
-	go get github.com/davyxu/tabtoy
+	go get github.com/vikingsc2007/tabtoy
 	
 ## 编写导出命令行
 
@@ -299,7 +299,7 @@
 
 * 功能: 生成所有表中类型信息, 索引的C#格式脚本
 
-* 范例: 生成cs后, 需要再生成bin格式, 通过[C#读取器]: (https://github.com/davyxu/tabtoy/blob/master/exportorv2/csharp) 读取二进制数据
+* 范例: 生成cs后, 需要再生成bin格式, 通过[C#读取器]: (https://github.com/vikingsc2007/tabtoy/blob/master/exportorv2/csharp) 读取二进制数据
 
 ### 二进制格式
 
@@ -307,7 +307,7 @@
 
 * 功能: 生成所有表中二进制数据
 
-* 范例: 生成bin后, 需要再生成cs格式, 通过[C#读取器]: (https://github.com/davyxu/tabtoy/blob/master/exportorv2/csharp) 读取二进制数据
+* 范例: 生成bin后, 需要再生成cs格式, 通过[C#读取器]: (https://github.com/vikingsc2007/tabtoy/blob/master/exportorv2/csharp) 读取二进制数据
 	
 ### go格式
 
@@ -366,11 +366,11 @@
 
 * 功能: 将以行延伸的表格, 适用于配置
 
-* 范例: https://github.com/davyxu/tabtoy/blob/master/exportorv2/exsample/Vertical.xlsx
+* 范例: https://github.com/vikingsc2007/tabtoy/blob/master/exportorv2/exsample/Vertical.xlsx
 
 # FAQ
 问：如何导出结构体数组？
-答：参考例子https://github.com/davyxu/tabtoy/blob/master/exportorv2/exsample/Sample.xlsx
+答：参考例子https://github.com/vikingsc2007/tabtoy/blob/master/exportorv2/exsample/Sample.xlsx
 中StrStruct字段
 注意： 结构体数组要求每个数组的元素在一个独立的单元格
 
@@ -379,7 +379,7 @@
 
 参考文件夹:
 	
-	[范例]: (https://github.com/davyxu/tabtoy/blob/master/exportorv2/exsample)	
+	[范例]: (https://github.com/vikingsc2007/tabtoy/blob/master/exportorv2/exsample)	
 	
 文件夹说明:
 

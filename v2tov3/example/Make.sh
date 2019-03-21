@@ -5,7 +5,7 @@ cd ../../../../../..
 export GOPATH=`pwd`
 cd ${CURR}
 
-go build -v -o ${GOPATH}/bin/tabtoy github.com/davyxu/tabtoy
+go build -v -o ${GOPATH}/bin/tabtoy github.com/vikingsc2007/tabtoy
 
 InputTableDir=../../v2/example
 OutputTableDir=.

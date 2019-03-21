@@ -2,7 +2,7 @@ package model
 
 import (
 	"github.com/davyxu/golexer"
-	"github.com/davyxu/tabtoy/v3/model"
+	"github.com/vikingsc2007/tabtoy/v3/model"
 )
 
 type ObjectFieldType struct {
