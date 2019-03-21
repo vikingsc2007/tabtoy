@@ -66,6 +66,11 @@ func V2Entry() {
 	if *paramTypeOut != "" {
 		g.AddOutputType("type", *paramTypeOut)
 	}
+	
+	if *paramJavaOut != "" {
+		g.AddOutputType("java", *paramJavaOut)
+	}
+	
 
 	if !v2.Run(g) {
 		os.Exit(1)

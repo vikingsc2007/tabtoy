@@ -29,6 +29,7 @@ var (
 	paramBinaryOut         = flag.String("binary_out", "", "output binary format(*.bin)")
 	paramTypeOut           = flag.String("type_out", "", "output table types(*.json)")
 	paramCppOut            = flag.String("cpp_out", "", "output c++ format (*.cpp)")
+	paramJavaOut            = flag.String("java_out", "", "output java class and deserialize code (*.java)")
 )
 
 // 特殊文件格式参数
