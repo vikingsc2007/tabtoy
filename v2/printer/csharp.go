@@ -372,7 +372,7 @@ type csharpFileModel struct {
 type csharpPrinter struct {
 }
 
-func (self *csharpPrinter) Run(g *Globals) *Stream {
+func (self *csharpPrinter) Run(g *Globals,outFile string) map[string]*Stream {
 
 	tpl, err := template.New("csharp").Parse(csharpTemplate)
 	if err != nil {
@@ -478,7 +478,11 @@ func (self *csharpPrinter) Run(g *Globals) *Stream {
 		return nil
 	}
 
-	return bf
+	// return bf
+
+	streamresult := map[string]*Stream {}
+	streamresult[outFile] = bf
+	return streamresult
 }
 
 func init() {

@@ -1,5 +1,5 @@
-package com.mixmarvel.tabtoy;
+package com.tabtoy;
 
 public interface DeserializeHandler<T>{
-    public void callBackMethod(T ins, DataReader reader);
+    public void Deserialize(T ins, DataReader reader);
 }

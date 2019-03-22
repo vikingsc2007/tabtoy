@@ -36,7 +36,7 @@ type typeFileModel struct {
 	Enums   []*typeStructModel
 }
 
-func (self *typePrinter) Run(g *Globals) *Stream {
+func (self *typePrinter) Run(g *Globals,outFile string) map[string]*Stream {
 
 	bf := NewStream()
 
@@ -105,7 +105,10 @@ func (self *typePrinter) Run(g *Globals) *Stream {
 
 	bf.WriteRawBytes(data)
 
-	return bf
+	// return bf
+	streamresult := map[string]*Stream {}
+	streamresult[outFile] = bf
+	return streamresult
 }
 
 func init() {

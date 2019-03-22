@@ -99,7 +99,7 @@ type protoFileModel struct {
 type protoPrinter struct {
 }
 
-func (self *protoPrinter) Run(g *Globals) *Stream {
+func (self *protoPrinter) Run(g *Globals,outFile string) map[string]*Stream {
 
 	tpl, err := template.New("proto").Parse(protoTemplate)
 	if err != nil {
@@ -170,7 +170,10 @@ func (self *protoPrinter) Run(g *Globals) *Stream {
 		return nil
 	}
 
-	return bf
+	// return bf
+	streamresult := map[string]*Stream {}
+	streamresult[outFile] = bf
+	return streamresult
 }
 
 func init() {

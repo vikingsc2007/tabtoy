@@ -28,7 +28,7 @@ func valueWrapperLua(g *Globals, t model.FieldType, n *model.Node) string {
 type luaPrinter struct {
 }
 
-func (self *luaPrinter) Run(g *Globals) *Stream {
+func (self *luaPrinter) Run(g *Globals,outFile string) map[string]*Stream {
 
 	stream := NewStream()
 
@@ -63,18 +63,22 @@ func (self *luaPrinter) Run(g *Globals) *Stream {
 	// local tab = {
 	stream.Printf("}\n\n")
 
+	streamresult := map[string]*Stream {}
+	streamresult[outFile] = stream
 	if !genLuaIndexCode(stream, g.CombineStruct) {
-		return stream
+		// return stream
+		return streamresult
 	}
 
 	// 生成枚举
 	if !genLuaEnumCode(g, stream, g.FileDescriptor) {
-		return stream
+		// return stream
+		
+		return streamresult
 	}
 
 	stream.Printf("\nreturn tab")
-
-	return stream
+	return streamresult
 }
 
 func printTableLua(g *Globals, stream *Stream, tab *model.Table) bool {

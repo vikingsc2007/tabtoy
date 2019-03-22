@@ -1,4 +1,4 @@
-package com.mixmarvel.tabtoy;
+package com.tabtoy;
 
 import java.io.DataInputStream;
 
@@ -139,7 +139,7 @@ class DataReader
             throw new Exception("instante struct error");
         }
 
-        handler.callBackMethod(element, new DataReader(this));
+        handler.Deserialize(element, new DataReader(this));
         return element;
     }
 

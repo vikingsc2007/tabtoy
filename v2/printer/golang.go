@@ -474,7 +474,7 @@ func collectAllStructInfo(g *Globals, fm *goFileModel) {
 	}
 }
 
-func (self *goPrinter) Run(g *Globals) *Stream {
+func (self *goPrinter) Run(g *Globals,outFile string) map[string]*Stream {
 
 	tpl, err := template.New("golang").Parse(goTemplate)
 	if err != nil {
@@ -503,7 +503,10 @@ func (self *goPrinter) Run(g *Globals) *Stream {
 		return nil
 	}
 
-	return bf
+	// return bf
+	streamresult := map[string]*Stream {}
+	streamresult[outFile] = bf
+	return streamresult
 }
 
 func formatCode(bf *bytes.Buffer) error {

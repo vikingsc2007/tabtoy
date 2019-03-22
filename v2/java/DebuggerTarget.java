@@ -1,6 +1,6 @@
-package com.mixmarvel.tabtoy;
+package com.tabtoy;
 
-import com.mixmarvel.tabtoy.LogTarget;
+import com.tabtoy.LogTarget;
 
 class DebuggerTarget extends LogTarget
 {

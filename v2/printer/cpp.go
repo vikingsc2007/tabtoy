@@ -372,7 +372,7 @@ type cppFileModel struct {
 type cppPrinter struct {
 }
 
-func (self *cppPrinter) Run(g *Globals) *Stream {
+func (self *cppPrinter) Run(g *Globals,outFile string) map[string]*Stream {
 
 	tpl, err := template.New("cpp").Parse(cppTemplate)
 	if err != nil {
@@ -462,7 +462,12 @@ func (self *cppPrinter) Run(g *Globals) *Stream {
 		return nil
 	}
 
-	return bf
+	// return bf
+
+
+	streamresult := map[string]*Stream {}
+	streamresult[outFile] = bf
+	return streamresult
 }
 
 func init() {

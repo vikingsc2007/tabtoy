@@ -13,7 +13,7 @@ const combineFileVersion = 4
 type binaryPrinter struct {
 }
 
-func (self *binaryPrinter) Run(g *Globals) *Stream {
+func (self *binaryPrinter) Run(g *Globals,outFile string) map[string]*Stream {
 
 	fileStresam := NewStream()
 	fileStresam.WriteString("TT")
@@ -49,7 +49,9 @@ func (self *binaryPrinter) Run(g *Globals) *Stream {
 	// 回填checksum
 	copy(checkSumData, []byte(checksum))
 
-	return fileStresam
+	streamresult := map[string]*Stream {}
+	streamresult[outFile] = fileStresam
+	return streamresult
 }
 
 func writeTableBinary(tabStream *Stream, tab *model.Table, index int32) bool {

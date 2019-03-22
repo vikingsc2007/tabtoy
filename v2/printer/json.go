@@ -23,7 +23,7 @@ func valueWrapperJson(t model.FieldType, node *model.Node) string {
 type jsonPrinter struct {
 }
 
-func (self *jsonPrinter) Run(g *Globals) *Stream {
+func (self *jsonPrinter) Run(g *Globals,outFile string) map[string]*Stream {
 
 	bf := NewStream()
 	bf.Printf("{\n")
@@ -50,7 +50,10 @@ func (self *jsonPrinter) Run(g *Globals) *Stream {
 
 	bf.Printf("}")
 
-	return bf
+	// return bf
+	streamresult := map[string]*Stream {}
+	streamresult[outFile] = bf
+	return streamresult
 }
 
 func printTableJson(bf *Stream, tab *model.Table) bool {

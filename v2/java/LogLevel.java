@@ -1,4 +1,4 @@
-package com.mixmarvel.tabtoy;
+package com.tabtoy;
 
 public enum LogLevel
 {
