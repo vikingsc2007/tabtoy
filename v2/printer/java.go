@@ -576,7 +576,7 @@ func (self *javaPrinter) Run(g *Globals,outFile string) map[string]*Stream {
 
 	// return bf
 	
-	streamresult[outFile] = bf
+	// streamresult[outFile] = bf
 	return streamresult
 }
 
