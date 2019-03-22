@@ -75,7 +75,7 @@ public class {{.Name}}
 {{end}}
 	//endregion
 	//region Deserialize code
-	{{range $.Classes}}
+	{{range $.ClassesAll}}
 	static DeserializeHandler<{{.Name}}> _{{.Name}}DeserializeHandler;
 	static DeserializeHandler<{{.Name}}> get{{.Name}}DeserializeHandler()
 	{
@@ -395,6 +395,7 @@ func (self *javaStructModel) IsCombine() bool {
 type javaFileModel struct {
 	Namespace   string
 	ToolVersion string
+	ClassesAll  []*javaStructModel
 	Classes     []*javaStructModel
 	Enums       []*javaStructModel
 	Indexes     []javaIndexField // 全局的索引
@@ -463,10 +464,9 @@ func (self *javaPrinter) Run(g *Globals,outFile string) map[string]*Stream {
 		switch d.Kind {
 		case model.DescriptorKind_Struct:
 			m.Classes = append(m.Classes, &sm)
-
-			mtmp.Classes = append(mtmp.Classes,&sm)
+			m.ClassesAll = append(m.ClassesAll, &sm)
 			
-
+			mtmp.Classes = append(mtmp.Classes,&sm)
 		case model.DescriptorKind_Enum:
 			m.Enums = append(m.Enums, &sm)
 
@@ -544,7 +544,7 @@ func (self *javaPrinter) Run(g *Globals,outFile string) map[string]*Stream {
 
 	for k, v := range allTypes {
 		// fmt.Println(k, v)
-
+		v.ClassesAll = m.Classes;
 		for _, classfd := range v.Classes {
 			log.Infof("----(%s---> class %s)\n", k,classfd.Name() )
 		}
@@ -576,7 +576,7 @@ func (self *javaPrinter) Run(g *Globals,outFile string) map[string]*Stream {
 
 	// return bf
 	
-	// streamresult[outFile] = bf
+	streamresult[outFile] = bf
 	return streamresult
 }
 
