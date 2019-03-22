@@ -76,8 +76,8 @@ public class {{.Name}}
 	//endregion
 	//region Deserialize code
 	{{range $.ClassesAll}}
-	static DeserializeHandler<{{.Name}}> _{{.Name}}DeserializeHandler;
-	static DeserializeHandler<{{.Name}}> get{{.Name}}DeserializeHandler()
+	public static DeserializeHandler<{{.Name}}> _{{.Name}}DeserializeHandler;
+	public static DeserializeHandler<{{.Name}}> get{{.Name}}DeserializeHandler()
 	{
 		if (_{{.Name}}DeserializeHandler == null )
 		{
