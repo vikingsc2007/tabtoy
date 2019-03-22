@@ -1,6 +1,8 @@
 package com.tabtoy;
 
-class Logger
+import java.util.ArrayList;
+
+public class Logger
 {
     ArrayList<LogTarget> _targets = new ArrayList<LogTarget>();
 
