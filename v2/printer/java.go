@@ -19,7 +19,7 @@ package com.tabtoy.{{.Namespace}}{{$globalIndex:=.Indexes}}{{$verticalFields:=.V
 
 import com.tabtoy.*;
 import java.util.ArrayList;
-import java.util.Hashtable;
+import java.util.HashMap;
 
 
 {{range .Enums}}
@@ -47,7 +47,7 @@ public class {{.Name}}
 {{end}}
 {{if .IsCombine}}
 	//region Index code
-	{{range $globalIndex}}Hashtable<{{.IndexType}}, {{.RowType}}> _{{.RowName}}By{{.IndexName}} = new Hashtable<{{.IndexType}}, {{.RowType}}>();
+	{{range $globalIndex}}HashMap<{{.IndexType}}, {{.RowType}}> _{{.RowName}}By{{.IndexName}} = new HashMap<{{.IndexType}}, {{.RowType}}>();
 	public {{.RowType}} Get{{.RowName}}By{{.IndexName}}({{.IndexType}} {{.IndexName}})
 	{
 		return Get{{.RowName}}By{{.IndexName}}({{.IndexName}},null);
